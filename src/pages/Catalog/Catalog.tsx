@@ -1,7 +1,13 @@
+import { FlexBox, Text } from "@src/components";
+import { ProductList } from "./components/ProductList/ProductList";
+
 export const Catalog = () => {
   return (
-    <div>
-      <h1>Catalog</h1>
-    </div>
+    <FlexBox align="center" justify="center" direction="column">
+      <Text size="large" color={1} weight={700}>
+        Catalog
+      </Text>
+      <ProductList />
+    </FlexBox>
   );
 };
