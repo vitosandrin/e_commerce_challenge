@@ -7,7 +7,7 @@ export const ProductList = () => {
   const { fetchProducts, products } = useContext(ProductContext);
 
   const hasProducts = products.length > 0;
-  console.log(products);
+  
   useEffect(() => {
     fetchProducts();
   }, []);
