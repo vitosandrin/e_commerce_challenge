@@ -1,4 +1,4 @@
-import { Cart } from "../../../entities/models/cart";
+import { Cart } from "@src/entities/models/cart";
 
 export const setStorageCart = (cart: Cart) => {
   localStorage.setItem("cart", JSON.stringify(cart));
