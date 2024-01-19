@@ -1,10 +1,14 @@
+import { FlexBox } from "@src/components";
 import { styled } from "styled-components";
 
-export const Card = styled.div`
+export const Card = styled(FlexBox)`
   background-color: ${({ theme }) => theme.colors.types.ghost};
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.225rem;
   box-shadow: 9px 13px 12px -3px rgba(0, 0, 0, 0.1);
-  margin: 0.225rem;
   max-width: 90%;
 `;
+
+export const HeaderCard = styled(FlexBox)``;
+
+export const InfoCard = styled(FlexBox)``;
