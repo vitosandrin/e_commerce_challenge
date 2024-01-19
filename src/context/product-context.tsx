@@ -28,7 +28,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     setSelectedProduct(product);
   };
   
-
   return (
     <ProductContext.Provider
       value={{
