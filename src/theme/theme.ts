@@ -31,7 +31,6 @@ export const theme = {
       1: "#FFF",
       2: "#787886",
       3: "#000",
-      white: "#FFF",
     },
     sizes: {
       xxxl: "2.5rem",
