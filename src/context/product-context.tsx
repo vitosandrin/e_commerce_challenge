@@ -1,7 +1,7 @@
 import { createContext, useState, ReactNode } from "react";
 import { Product } from "@src/entities/models/product";
 import { fakeStoreAPI } from "@src/config/client/fake-store-api";
-
+import { format } from "date-fns";
 interface IProductContext {
   products: Product[];
   selectedProduct: Product | null;
@@ -18,8 +18,16 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const fetchProducts = async () => {
-    const { data: response } = await fakeStoreAPI.get("/products");
-    setProducts(response);
+    const { data: response } = await fakeStoreAPI.get(
+      "/products/category/electronics"
+    );
+
+    const productsWithDate = response.map((product: Product) => ({
+      ...product,
+      included_at: format(new Date().toISOString(), "dd/MM/yyyy"),
+    }));
+
+    setProducts(productsWithDate);
   };
 
   const selectProduct = (productId: number) => {
@@ -27,14 +35,14 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     if (!product) return;
     setSelectedProduct(product);
   };
-  
+
   return (
     <ProductContext.Provider
       value={{
         products,
         selectedProduct,
         fetchProducts,
-        selectProduct
+        selectProduct,
       }}
     >
       {children}
