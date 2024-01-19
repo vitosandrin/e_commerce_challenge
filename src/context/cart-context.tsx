@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { Product } from "../entities/models/product";
-import { Cart } from "../entities/models/cart";
+import { Product } from "@src/entities/models/product";
+import { Cart } from "@src/entities/models/cart";
 import {
   getStorageCart,
   setStorageCart,
-} from "../utils/storage/cart/cart-local-storage";
+} from "@src/utils/storage/cart/cart-local-storage";
 
 interface ICartContext {
   cart: Cart;
@@ -22,22 +22,34 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       const updatedProducts = [...prevCart.products, product];
       const updatedAmount = prevCart.amount + product.price;
       const updatedTotal = updatedProducts.length;
-      return { products: updatedProducts, total: updatedTotal, amount: updatedAmount };
+      return {
+        products: updatedProducts,
+        total: updatedTotal,
+        amount: updatedAmount,
+      };
     });
   };
 
   const removeFromCart = (productId: number) => {
     setCart((prevCart) => {
-      const removedProduct = prevCart.products.find((item) => item.id === productId);
+      const removedProduct = prevCart.products.find(
+        (item) => item.id === productId
+      );
       if (!removedProduct) {
         return prevCart;
       }
 
-      const updatedProducts = prevCart.products.filter((item) => item.id !== productId);
+      const updatedProducts = prevCart.products.filter(
+        (item) => item.id !== productId
+      );
       const updatedAmount = prevCart.amount - removedProduct.price;
       const updatedTotal = updatedProducts.length;
 
-      return { products: updatedProducts, total: updatedTotal, amount: updatedAmount };
+      return {
+        products: updatedProducts,
+        total: updatedTotal,
+        amount: updatedAmount,
+      };
     });
   };
 

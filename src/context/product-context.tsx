@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
-import { Product } from "../entities/models/product";
-import { fakeStoreAPI } from "../config/client/fake-store-api";
+import { Product } from "@src/entities/models/product";
+import { fakeStoreAPI } from "@src/config/client/fake-store-api";
 
 interface IProductContext {
   products: Product[];
