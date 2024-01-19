@@ -17,10 +17,10 @@ export const ResetCss = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.typescolor.info};
+    color: ${({ theme }) => theme.colors.feedback.info};
     
     p{
-      color: ${({ theme }) => theme.colors.typescolor.info};
+      color: ${({ theme }) => theme.colors.feedback.info};
     }
   }
 
