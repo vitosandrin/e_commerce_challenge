@@ -1,17 +1,17 @@
-import { Product } from "../../../entities/models/product";
+import { Cart } from "../../../entities/models/cart";
 
-export const setStorageCartProducts = (cartProducts: Product[]) => {
-  localStorage.setItem("cart", JSON.stringify(cartProducts));
+export const setStorageCart = (cart: Cart) => {
+  localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-export const getStorageCartProducts = (): [] => {
-  const cartProducts = localStorage.getItem("cart");
-  if (cartProducts) {
-    return JSON.parse(cartProducts);
+export const getStorageCart = (): Cart => {
+  const cart = localStorage.getItem("cart");
+  if (cart) {
+    return JSON.parse(cart);
   }
-  return [];
+  return { products: [], total: 0, amount: 0 };
 };
 
-export const clearStorageCartProducts = () => {
+export const clearStorageCart = () => {
   localStorage.removeItem("cart");
 };

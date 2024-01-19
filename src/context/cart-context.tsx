@@ -2,14 +2,12 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 import { Product } from "../entities/models/product";
 import { Cart } from "../entities/models/cart";
 import {
-  getStorageCartProducts,
-  setStorageCartProducts,
+  getStorageCart,
+  setStorageCart,
 } from "../utils/storage/cart/cart-local-storage";
 
 interface ICartContext {
   cart: Cart;
-  cartProducts: Product[];
-  cartProductsAmount: number;
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
 }
@@ -38,14 +36,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const amount = cartProducts.reduce((acc, item) => acc + item.price, 0);
     setCartProductsAmount(amount);
-
-    setStorageCartProducts(cartProducts);
+    setStorageCart(cart);
   }, [cartProducts]);
 
   useEffect(() => {
-    const storedCartProducts = getStorageCartProducts();
-    if (storedCartProducts) {
-      setCartProducts(storedCartProducts);
+    const storedCart = getStorageCart();
+    if (storedCart) {
+      setCartProducts(storedCart.products);
     }
   }, []);
 
@@ -61,8 +58,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     <CartContext.Provider
       value={{
         cart,
-        cartProducts,
-        cartProductsAmount,
         addToCart,
         removeFromCart,
       }}
