@@ -8,7 +8,7 @@ import {
 } from "@src/components/types";
 
 interface TextProps {
-  children: ReactNode;
+  children: ReactNode | Date;
   size?: "medium" | "large" | "small";
   textStyle?: TextStyle;
   weight?: Weight;
