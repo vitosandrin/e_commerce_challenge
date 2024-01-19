@@ -15,44 +15,42 @@ interface ICartContext {
 export const CartContext = createContext<ICartContext>({} as ICartContext);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartProducts, setCartProducts] = useState<Product[]>([]);
-  const [cartProductsAmount, setCartProductsAmount] = useState(0);
-  const [cart, setCart] = useState<Cart>({
-    products: cartProducts,
-    amount: cartProductsAmount,
-    total: cartProducts.length,
-  });
+  const [cart, setCart] = useState<Cart>({ products: [], total: 0, amount: 0 });
 
   const addToCart = (product: Product) => {
-    setCartProducts((prevItems) => [...prevItems, product]);
+    setCart((prevCart) => {
+      const updatedProducts = [...prevCart.products, product];
+      const updatedAmount = prevCart.amount + product.price;
+      const updatedTotal = updatedProducts.length;
+      return { products: updatedProducts, total: updatedTotal, amount: updatedAmount };
+    });
   };
 
   const removeFromCart = (productId: number) => {
-    setCartProducts((prevItems) =>
-      prevItems.filter((item) => item.id !== productId)
-    );
+    setCart((prevCart) => {
+      const removedProduct = prevCart.products.find((item) => item.id === productId);
+      if (!removedProduct) {
+        return prevCart;
+      }
+
+      const updatedProducts = prevCart.products.filter((item) => item.id !== productId);
+      const updatedAmount = prevCart.amount - removedProduct.price;
+      const updatedTotal = updatedProducts.length;
+
+      return { products: updatedProducts, total: updatedTotal, amount: updatedAmount };
+    });
   };
 
   useEffect(() => {
-    const amount = cartProducts.reduce((acc, item) => acc + item.price, 0);
-    setCartProductsAmount(amount);
     setStorageCart(cart);
-  }, [cartProducts]);
+  }, [cart]);
 
   useEffect(() => {
     const storedCart = getStorageCart();
     if (storedCart) {
-      setCartProducts(storedCart.products);
+      setCart(storedCart);
     }
   }, []);
-
-  useEffect(() => {
-    setCart({
-      products: cartProducts,
-      amount: cartProductsAmount,
-      total: cartProducts.length,
-    });
-  }, [cartProducts, cartProductsAmount]);
 
   return (
     <CartContext.Provider
