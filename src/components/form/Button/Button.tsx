@@ -16,7 +16,7 @@ interface IButtonProps
   onClick?: React.MouseEventHandler;
   type?: TButton;
   notAllowed?: boolean;
-  colorType: "Danger" | "Success";
+  colorType: "Danger" | "Success" | "Info";
 }
 
 export const Button = ({

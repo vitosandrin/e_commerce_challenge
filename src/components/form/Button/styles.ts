@@ -35,8 +35,6 @@ export const BaseButton = styled.button<ButtonStyleProps>`
   &:hover {
     background-color: ${(props) => props?.hoverColor};
   }
-  box-shadow: ${({ theme }) => theme.colors.types.boxShadow[1]};
-
   color: ${({ theme }) => theme.font.colors[1]};
 
   transition-property: color, background-color, border-color, box-shadow, filter;
@@ -86,6 +84,19 @@ export const Button = styled(BaseButton)<ButtonStyleProps>`
     &:active {
       background-color: ${({ theme: { colors } }) =>
         shadify(0.35, colors.feedback.success)};
+    }
+  }
+
+  &.Info {
+    background: ${({ theme: { colors } }) => colors.feedback.info};
+
+    &:hover {
+      background-color: ${({ theme: { colors } }) =>
+        shadify(0.2, colors.feedback.info)};
+    }
+    &:active {
+      background-color: ${({ theme: { colors } }) =>
+        shadify(0.35, colors.feedback.info)};
     }
   }
 `;
