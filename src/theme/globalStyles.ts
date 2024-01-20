@@ -17,11 +17,8 @@ export const ResetCss = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.feedback.info};
-    
-    p{
-      color: ${({ theme }) => theme.colors.feedback.info};
-    }
+    color: inherit;
+    text-decoration: none;
   }
 
   * {
