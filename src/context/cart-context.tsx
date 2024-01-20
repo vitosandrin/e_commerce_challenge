@@ -32,19 +32,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const removeFromCart = (productId: number) => {
     setCart((prevCart) => {
-      const removedProduct = prevCart.products.find(
+      const indexOfItemToRemove = prevCart.products.findIndex(
         (item) => item.id === productId
       );
-      if (!removedProduct) {
+  
+      if (indexOfItemToRemove === -1) {
         return prevCart;
       }
-
-      const updatedProducts = prevCart.products.filter(
-        (item) => item.id !== productId
-      );
-      const updatedAmount = prevCart.amount - removedProduct.price;
+  
+      const updatedProducts = [...prevCart.products];
+      updatedProducts.splice(indexOfItemToRemove, 1);
+  
+      const updatedAmount =
+        prevCart.amount - prevCart.products[indexOfItemToRemove].price;
       const updatedTotal = updatedProducts.length;
-
+  
       return {
         products: updatedProducts,
         total: updatedTotal,
@@ -52,6 +54,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       };
     });
   };
+  
 
   useEffect(() => {
     setStorageCart(cart);
