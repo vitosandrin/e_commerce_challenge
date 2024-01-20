@@ -1,7 +1,7 @@
 import { Product } from "@src/entities/models/product";
 import * as ProductCardStyles from "./styles";
 import { ProductCardActions } from "./components/ProductCardActions/ProductCardActions";
-import { ProductCardInfo } from "./components/ProductCardInfo";
+import { ProductCardInfo } from "./components/ProductCardInfo/ProductCardInfo";
 
 interface ProductCardProps {
   product: Product;
