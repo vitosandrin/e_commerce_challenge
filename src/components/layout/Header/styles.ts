@@ -7,4 +7,6 @@ export const Container = styled.header`
 
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.types.black};
+
+  margin-bottom: 0.75rem;
   `;
