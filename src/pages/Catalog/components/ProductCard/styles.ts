@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 
 export const Card = styled(FlexBox)`
   border-radius: 10px;
-  padding: 0.5rem;
-
+  padding: 1rem;
+  
   max-width: 425px;
   width: 90%;
   
@@ -19,7 +19,5 @@ export const InfoCard = styled(FlexBox)``;
 
 export const ImageCard = styled.img`
   max-width: 100%;
-  width: 200px;
   display: block;
-  transform: scale(0.8);
 `;

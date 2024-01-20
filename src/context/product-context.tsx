@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
-import { Product } from "@src/entities/models/product";
-import { fakeStoreAPI } from "@src/config/client/fake-store-api";
+import { Product, ProductAPIResponse } from "@src/entities/models/product";
+import { api } from "@src/config/client/api";
 import { format } from "date-fns";
 interface IProductContext {
   products: Product[];
@@ -18,16 +18,13 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const fetchProducts = async () => {
-    const { data: response } = await fakeStoreAPI.get(
-      "/products/category/electronics"
-    );
-
-    const productsWithDate = response.map((product: Product) => ({
+    const { data: response } = await api.get("/categories/2/products?offset=0&limit=10");
+    const productsMapped = response.map((product: ProductAPIResponse) => ({
       ...product,
-      included_at: format(new Date().toISOString(), "dd/MM/yyyy"),
+      image: product.images[1],
     }));
 
-    setProducts(productsWithDate);
+    setProducts(productsMapped);
   };
 
   const selectProduct = (productId: number) => {

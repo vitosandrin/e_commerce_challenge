@@ -2,8 +2,9 @@ export interface Product {
   id: number;
   title: string;
   price: number;
-  category: string;
   description: string;
   image: string;
-  included_at: Date;
+  creationAt: string;
 }
+
+export type ProductAPIResponse = Omit<Product, "image"> & { images: string[] };
