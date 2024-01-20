@@ -27,13 +27,21 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
       direction="row"
       gap="xxs"
     >
-      <Button colorType="Success" onClick={() => handleAddToCart(product)}>
+      <Button
+        onClick={() => handleAddToCart(product)}
+        colorType="Success"
+        height="md"
+      >
         <FaCartPlus size={20} />
         <Text size="small" weight={500}>
           Add to cart
         </Text>
       </Button>
-      <Button colorType="Info" onClick={() => handleBuyNow(product)}>
+      <Button
+        colorType="Info"
+        height="md"
+        onClick={() => handleBuyNow(product)}
+      >
         <Text size="small" weight={500}>
           Buy now
         </Text>
