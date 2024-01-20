@@ -10,5 +10,6 @@ export const ListContainer = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     grid-template-columns: repeat(2, 1fr);
+    gap: ${({ theme }) => theme.spacing.xxs};
   }
 `;
