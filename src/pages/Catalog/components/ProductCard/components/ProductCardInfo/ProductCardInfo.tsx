@@ -1,4 +1,4 @@
-import { FlexBox, Text } from "@src/components";
+import { Text } from "@src/components";
 import { Product } from "@src/entities/models/product";
 import { formatMonetaryEn } from "@src/utils/object/monetary";
 import * as ProductCardStyles from "../../styles";
