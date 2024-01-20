@@ -14,8 +14,8 @@ export const theme = {
       ice: "#96D9D6",
       ghost: "#735797",
       dragon: "#6F35FC",
-      boxShadow:
-        "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px",
+      black: "#000",
+      white: "#FFF",
     },
     feedback: {
       success: "#007e33",

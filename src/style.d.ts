@@ -11,7 +11,8 @@ declare module "styled-components" {
         ghost: string;
         ice: string;
         water: string;
-        boxShadow: string;
+        black: string;
+        white: string;
       };
       feedback: {
         warning: string;
