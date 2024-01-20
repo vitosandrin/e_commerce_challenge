@@ -1,10 +1,10 @@
-import { Button, FlexBox, Text } from "@src/components";
+import { Button, Text } from "@src/components";
 import { CartContext } from "@src/context/cart-context";
 import { Product } from "@src/entities/models/product";
 import { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-
+import * as ProductCardActionStyles from "./styles";
 interface ProductCardActionsProps {
   product: Product;
 }
@@ -21,7 +21,12 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
   const handleAddToCart = (product: Product) => addToCart(product);
 
   return (
-    <FlexBox align="center" justify="center" direction="row" gap="xxs">
+    <ProductCardActionStyles.Container
+      align="center"
+      justify="center"
+      direction="row"
+      gap="xxs"
+    >
       <Button colorType="Success" onClick={() => handleAddToCart(product)}>
         <FaCartPlus size={20} />
         <Text size="small" weight={500}>
@@ -33,6 +38,6 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
           Buy now
         </Text>
       </Button>
-    </FlexBox>
+    </ProductCardActionStyles.Container>
   );
 };
