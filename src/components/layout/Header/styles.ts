@@ -6,5 +6,5 @@ export const Container = styled.header`
   justify-content: space-between;
 
   padding: 1rem;
-  background-color: ${({ theme }) => theme.colors.types.ghost};
-`;
+  background-color: ${({ theme }) => theme.colors.types.black};
+  `;
