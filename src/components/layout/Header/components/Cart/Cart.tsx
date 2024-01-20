@@ -7,7 +7,7 @@ export const Cart = () => {
 
   return (
     <CartStyles.Container>
-      <FaCartShopping size={25} />;
+      <FaCartShopping size={30} />
       <CartStyles.TotalCart>{cart.total}</CartStyles.TotalCart>
     </CartStyles.Container>
   );

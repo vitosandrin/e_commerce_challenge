@@ -7,11 +7,10 @@ export const Container = styled.div`
 
 export const TotalCart = styled.div`
   position: absolute;
-  top: -8px;
-  right: -5px;
+  top: -7px;
+  right: -4px;
   background: red;
   border-radius: 100%;
-  padding: 2px 3px;
-  color: white;
-  font-size: 11px;
+  padding: 2px 3.8px;
+  font-size: 12px;
 `;
