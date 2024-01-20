@@ -1,7 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
 import { Product, ProductAPIResponse } from "@src/entities/models/product";
 import { api } from "@src/config/client/api";
-import { format } from "date-fns";
 interface IProductContext {
   products: Product[];
   selectedProduct: Product | null;
