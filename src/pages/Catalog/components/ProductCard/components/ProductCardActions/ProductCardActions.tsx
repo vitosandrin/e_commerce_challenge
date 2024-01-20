@@ -33,7 +33,7 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
         height="md"
       >
         <FaCartPlus size={20} />
-        <Text size="small" weight={500}>
+        <Text size="xs" weight={500}>
           Add to cart
         </Text>
       </Button>
@@ -42,7 +42,7 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
         height="md"
         onClick={() => handleBuyNow(product)}
       >
-        <Text size="small" weight={500}>
+        <Text size="xs" weight={500}>
           Buy now
         </Text>
       </Button>

@@ -25,7 +25,7 @@ export const ResetCss = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family:"Quicksand";
+    font-family:"Roboto", sans-serif;
   }
 
   ::-webkit-scrollbar-track {

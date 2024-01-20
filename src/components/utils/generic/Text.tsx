@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { ReactNode } from "react";
 import {
+  FontSize,
   TextAlign,
   TextStyle,
   ValidFontColor,
@@ -9,26 +10,12 @@ import {
 
 interface TextProps {
   children: ReactNode | Date;
-  size?: "medium" | "large" | "small";
+  size?: FontSize;
   textStyle?: TextStyle;
   weight?: Weight;
   textAlign?: TextAlign;
   color?: ValidFontColor;
 }
-
-const TextLarge = css`
-  font-size: ${({ theme }) => theme.font.sizes.lg};
-`;
-
-const TextMedium = css`
-  font-size: ${({ theme }) => theme.font.sizes.md};
-  letter-spacing: 0.15px;
-`;
-
-const TextSmall = css`
-  font-size: ${({ theme }) => theme.font.sizes.sm};
-  letter-spacing: 0.15px;
-`;
 
 const BaseText = styled.p<TextProps>`
   font-size: ${({ theme }) => theme.font.sizes.xs};
@@ -37,11 +24,9 @@ const BaseText = styled.p<TextProps>`
   text-transform: ${({ textStyle }) => textStyle || "none"};
   text-align: ${({ textAlign }) => textAlign || "match-parent"};
   color: ${({ color, theme: { font } }) =>
-    color ? font.colors[color] : font.colors.dark};
+    color ? font.colors[color] : font.colors[1]};
 
-  ${({ size }) => size === "large" && TextLarge};
-  ${({ size }) => size === "medium" && TextMedium};
-  ${({ size }) => size === "small" && TextSmall};
+  font-size: ${({ size, theme: { font } }) => (size ? font.sizes[size] : "sm")};
 `;
 
 export const Text = ({

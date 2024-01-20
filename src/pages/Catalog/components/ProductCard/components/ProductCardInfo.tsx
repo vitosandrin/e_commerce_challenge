@@ -11,13 +11,13 @@ export const ProductCardInfo = ({ product }: ProductCardInfoProps) => {
   return (
     <FlexBox align="center" justify="flex-start" direction="column" gap="xxs">
       <ProductCardStyles.ImageCard src={product.image} />
-      <Text>{`Available since: ${format(product.creationAt, "dd/MM/yy")}`}</Text>
+      <Text size="xxxs">{`Available since: ${format(product.creationAt, "dd/MM/yy")}`}</Text>
 
-      <Text size="small" weight={500}>
+      <Text size="sm" weight={500}>
         {product.title}
       </Text>
 
-      <Text size="medium" weight={700}>
+      <Text size="md" weight={700}>
         {formatMonetaryEn(product.price)}
       </Text>
     </FlexBox>

@@ -9,4 +9,4 @@ export const Container = styled.header`
   background-color: ${({ theme }) => theme.colors.types.black};
 
   margin-bottom: 0.75rem;
-  `;
+`;

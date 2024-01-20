@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 export const Cart = () => {
   const { cart } = useContext(CartContext);
-
   return (
     <CartStyles.Container>
       <Link to="/checkout">
