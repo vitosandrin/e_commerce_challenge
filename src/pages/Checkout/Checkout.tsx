@@ -1,21 +1,20 @@
 import { CartContext } from "@src/context/cart-context";
 import { formatMonetaryEn } from "@src/utils/object/monetary";
 import { useContext } from "react";
-
+import * as CheckoutStyles from "./styles";
+import { InfoCart } from "./components/InfoCart/InfoCart";
 export const Checkout = () => {
   const { cart, removeFromCart } = useContext(CartContext);
-  console.log(cart.products);
 
   const handleRemoveFromCart = (productId: number) => removeFromCart(productId);
 
   return (
-    <div>
-      <h1>Checkout</h1>
-
-      <p>TOTAL: {cart.total}</p>
-      <p>AMOUNT:{formatMonetaryEn(cart.amount)}</p>
-
-      {cart.products.map((product, key) => (
+    <CheckoutStyles.Container
+      align="center"
+      justify="space-between"
+      direction="row"
+    >
+      {cart.products.map((product) => (
         <div style={{ borderBottom: "1px solid white" }}>
           <img
             src={product.image}
@@ -31,6 +30,7 @@ export const Checkout = () => {
           </button>
         </div>
       ))}
-    </div>
+      <InfoCart />
+    </CheckoutStyles.Container>
   );
 };
