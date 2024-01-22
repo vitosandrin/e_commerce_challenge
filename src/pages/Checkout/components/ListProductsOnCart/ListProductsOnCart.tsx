@@ -9,10 +9,12 @@ import { Product } from "@src/entities/models/product";
 export const ListProductsOnCart = () => {
   const {
     cart: { products },
-    removeFromCart,
+    removeManyProductsFromCartById,
   } = useContext(CartContext);
 
-  const handleRemoveFromCart = (productId: number) => removeFromCart(productId);
+  const handleRemoveProductFromCartById = (productId: number) => {
+    removeManyProductsFromCartById(productId);
+  };
 
   const groupedProducts: { [key: number]: Product & { quantity: number } } = {};
 
@@ -41,7 +43,7 @@ export const ListProductsOnCart = () => {
         >
           <ProductCardOnCart product={groupedProduct} />
           <ListProductsOnCartStyles.RemoveButton
-            onClick={() => handleRemoveFromCart(groupedProduct.id)}
+            onClick={() => handleRemoveProductFromCartById(groupedProduct.id)}
           >
             <FaRegTrashCan size={30} />
           </ListProductsOnCartStyles.RemoveButton>

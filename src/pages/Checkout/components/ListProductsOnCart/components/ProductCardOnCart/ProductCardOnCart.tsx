@@ -11,16 +11,16 @@ interface ProductCardOnCartProps {
 }
 
 export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
-  const { addToCart, removeFromCart } = useContext(CartContext);
+  const { addProductToCart, removeProductFromCartById } = useContext(CartContext);
   const [quantity, setQuantity] = useState(product.quantity);
 
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);
 
     if (newQuantity > product.quantity) {
-      addToCart(product);
+      addProductToCart(product);
     } else if (newQuantity < product.quantity) {
-      removeFromCart(product.id);
+      removeProductFromCartById(product.id);
     }
   };
 

@@ -10,15 +10,15 @@ interface ProductCardActionsProps {
 }
 
 export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
-  const { addToCart } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handleBuyNow = (product: Product) => {
-    addToCart(product);
+    addProductToCart(product);
     navigate("/checkout");
   };
 
-  const handleAddToCart = (product: Product) => addToCart(product);
+  const handleaddProductToCart = (product: Product) => addProductToCart(product);
 
   return (
     <ProductCardActionStyles.Container
@@ -28,7 +28,7 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
       gap="xxs"
     >
       <Button
-        onClick={() => handleAddToCart(product)}
+        onClick={() => handleaddProductToCart(product)}
         colorType="Success"
         height="md"
       >
