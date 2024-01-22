@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ProductCardOnCart } from "./components/ProductCardOnCart/ProductCardOnCart";
 import { FlexBox } from "@src/components";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { Product } from "@src/entities/models/product";
 
 export const ListProductsOnCart = () => {
   const {
@@ -12,6 +13,20 @@ export const ListProductsOnCart = () => {
   } = useContext(CartContext);
 
   const handleRemoveFromCart = (productId: number) => removeFromCart(productId);
+  
+  const groupedProducts: Product[] = [];
+  const addedProductIds: number[] = [];
+
+  products.forEach((product) => {
+    if (!addedProductIds.includes(product.id)) {
+      const productWithQuantity = {
+        ...product,
+        quantity: products.filter((p) => p.id === product.id).length,
+      };
+      groupedProducts.push(productWithQuantity);
+      addedProductIds.push(product.id);
+    }
+  });
 
   return (
     <ListProductsOnCartStyles.Container
@@ -20,9 +35,9 @@ export const ListProductsOnCart = () => {
       direction="column"
       gap="xxs"
     >
-      {products.map((product) => (
-        <FlexBox align="center" justify="center" direction="row" gap="xxs">
-          <ProductCardOnCart key={product.id} product={product} />
+       {groupedProducts.map((product) => (
+        <FlexBox align="center" justify="center" direction="row" gap="xxs" key={product.id}>
+          <ProductCardOnCart product={product} />
           <ListProductsOnCartStyles.RemoveButton
             onClick={() => handleRemoveFromCart(product.id)}
           >
