@@ -7,24 +7,23 @@ import { QuantitySelector } from "../QuantitySelector/QuantitySelector";
 import { CartContext } from "@src/context/cart-context";
 
 interface ProductCardOnCartProps {
-  product: Product;
+  product: Product & { quantity: number };
 }
 
 export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const {
-    addToCart,
-    removeFromCart,
-  } = useContext(CartContext);
+  const { addToCart, removeFromCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(product.quantity);
 
   const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity > 0) {
+    setQuantity(newQuantity);
+
+    if (newQuantity > product.quantity) {
       addToCart(product);
-    } else {
+    } else if (newQuantity < product.quantity) {
       removeFromCart(product.id);
     }
   };
+
 
   return (
     <ProductCardOnCartStyles.Container

@@ -13,16 +13,19 @@ export const QuantitySelector = ({
   const [quantity, setQuantity] = useState(initialQuantity);
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
-    onQuantityChange(quantity + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onQuantityChange(newQuantity);
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
-      onQuantityChange(quantity - 1);
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      onQuantityChange(newQuantity);
     }
   };
+  
   return (
     <FlexBox align="center" justify="center" direction="row" gap="xxs">
       <Button

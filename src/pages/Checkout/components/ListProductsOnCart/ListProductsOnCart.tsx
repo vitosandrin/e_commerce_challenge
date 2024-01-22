@@ -13,19 +13,15 @@ export const ListProductsOnCart = () => {
   } = useContext(CartContext);
 
   const handleRemoveFromCart = (productId: number) => removeFromCart(productId);
-  
-  const groupedProducts: Product[] = [];
-  const addedProductIds: number[] = [];
+
+  const groupedProducts: { [key: number]: Product & { quantity: number } } = {};
 
   products.forEach((product) => {
-    if (!addedProductIds.includes(product.id)) {
-      const productWithQuantity = {
-        ...product,
-        quantity: products.filter((p) => p.id === product.id).length,
-      };
-      groupedProducts.push(productWithQuantity);
-      addedProductIds.push(product.id);
+    const productId = product.id;
+    if (!groupedProducts[productId]) {
+      groupedProducts[productId] = { ...product, quantity: 0 };
     }
+    groupedProducts[productId].quantity++;
   });
 
   return (
@@ -35,11 +31,17 @@ export const ListProductsOnCart = () => {
       direction="column"
       gap="xxs"
     >
-       {groupedProducts.map((product) => (
-        <FlexBox align="center" justify="center" direction="row" gap="xxs" key={product.id}>
-          <ProductCardOnCart product={product} />
+      {Object.values(groupedProducts).map((groupedProduct) => (
+        <FlexBox
+          align="center"
+          justify="center"
+          direction="row"
+          gap="xxs"
+          key={groupedProduct.id}
+        >
+          <ProductCardOnCart product={groupedProduct} />
           <ListProductsOnCartStyles.RemoveButton
-            onClick={() => handleRemoveFromCart(product.id)}
+            onClick={() => handleRemoveFromCart(groupedProduct.id)}
           >
             <FaRegTrashCan size={30} />
           </ListProductsOnCartStyles.RemoveButton>
