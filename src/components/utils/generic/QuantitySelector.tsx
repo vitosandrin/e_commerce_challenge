@@ -37,7 +37,7 @@ export const QuantitySelector = ({
         height="sm"
         colorType="Info"
         onClick={handleDecrement}
-        disabled={quantity === 0}
+        disabled={quantity === 1}
       >
         -
       </Button>

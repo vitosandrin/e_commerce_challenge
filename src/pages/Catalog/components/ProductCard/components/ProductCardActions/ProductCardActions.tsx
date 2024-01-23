@@ -1,7 +1,7 @@
-import { Button, Text } from "@src/components";
+import { Button, QuantitySelector, Text } from "@src/components";
 import { CartContext } from "@src/context/cart-context";
 import { Product, ProductInCart } from "@src/entities/models/product";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import * as ProductCardActionStyles from "./styles";
@@ -11,16 +11,35 @@ interface ProductCardActionsProps {
 }
 
 export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
+  //TODO BUG
+  const [quantity, setQuantity] = useState<number>(
+    (product as ProductInCart).quantity
+  );
   const {
     addProductToCart,
     removeManyProductsFromCartById,
+    removeProductFromCartById,
     cart: { products },
   } = useContext(CartContext);
   const navigate = useNavigate();
 
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);
+
+    if (newQuantity > quantity) {
+      addProductToCart(product);
+    } else if (newQuantity < quantity) {
+      removeProductFromCartById(product.id);
+    }
+  };
+
   const handleBuyNow = (product: Product | ProductInCart) => {
-    addProductToCart(product);
-    navigate("/checkout");
+    if (products.some((item) => item.id === product.id)) {
+      navigate("/checkout");
+    } else {
+      addProductToCart(product);
+      navigate("/checkout");
+    }
   };
 
   const handleAddProductToCart = (product: Product | ProductInCart) =>
@@ -51,23 +70,30 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
         direction="row"
         gap="xxs"
       >
-        <Button
-          onClick={() => handleAddProductToCart(product)}
-          colorType="Success"
-          height="md"
-        >
-          <FaCartPlus size={20} />
-          <Text size="xs" weight={500}>
-            Add to cart
-          </Text>
-        </Button>
-        {products.some((item) => item.id === product.id) && (
+        {products.some((item) => item.id === product.id) ? (
+          <>
+            <QuantitySelector
+              initialQuantity={quantity}
+              onQuantityChange={handleQuantityChange}
+            />
+            <Button
+              colorType="Danger"
+              height="md"
+              onClick={() => handleRemoveFromCart(product.id)}
+            >
+              <FaRegTrashCan />
+            </Button>
+          </>
+        ) : (
           <Button
-            colorType="Danger"
+            onClick={() => handleAddProductToCart(product)}
+            colorType="Success"
             height="md"
-            onClick={() => handleRemoveFromCart(product.id)}
           >
-            <FaRegTrashCan />
+            <FaCartPlus size={20} />
+            <Text size="xs" weight={500}>
+              Add to cart
+            </Text>
           </Button>
         )}
       </ProductCardActionStyles.ContainerCartActions>

@@ -3,4 +3,5 @@ import { Container } from "./utils/core/Container";
 import { Text } from "./utils/generic/Text";
 import { Button } from "./form/Button/Button";
 import { Header } from "./layout/Header/Header";
-export { FlexBox, Container, Text, Button, Header };
+import { QuantitySelector } from "./utils/generic/QuantitySelector";
+export { FlexBox, Container, Text, Button, Header, QuantitySelector };
