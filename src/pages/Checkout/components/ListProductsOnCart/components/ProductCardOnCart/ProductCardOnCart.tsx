@@ -1,4 +1,4 @@
-import { Product } from "@src/entities/models/product";
+import { ProductInCart } from "@src/entities/models/product";
 import * as ProductCardOnCartStyles from "./styles";
 import { FlexBox, Text } from "@src/components";
 import { formatMonetaryEn } from "@src/utils/object/monetary";
@@ -7,11 +7,12 @@ import { QuantitySelector } from "../QuantitySelector/QuantitySelector";
 import { CartContext } from "@src/context/cart-context";
 
 interface ProductCardOnCartProps {
-  product: Product & { quantity: number };
+  product: ProductInCart;
 }
 
 export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
-  const { addProductToCart, removeProductFromCartById } = useContext(CartContext);
+  const { addProductToCart, removeProductFromCartById } =
+    useContext(CartContext);
   const [quantity, setQuantity] = useState(product.quantity);
 
   const handleQuantityChange = (newQuantity: number) => {
@@ -23,7 +24,6 @@ export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
       removeProductFromCartById(product.id);
     }
   };
-
 
   return (
     <ProductCardOnCartStyles.Container

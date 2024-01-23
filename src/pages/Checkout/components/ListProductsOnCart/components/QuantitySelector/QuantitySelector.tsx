@@ -1,5 +1,5 @@
 import { Button, FlexBox, Text } from "@src/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface QuantitySelectorProps {
   initialQuantity: number;
@@ -25,6 +25,11 @@ export const QuantitySelector = ({
       onQuantityChange(newQuantity);
     }
   };
+
+  useEffect(() => {
+    onQuantityChange(quantity);
+  }, [quantity, onQuantityChange]);
+  
   
   return (
     <FlexBox align="center" justify="center" direction="row" gap="xxs">

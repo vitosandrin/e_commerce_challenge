@@ -1,24 +1,25 @@
 import { Button, Text } from "@src/components";
 import { CartContext } from "@src/context/cart-context";
-import { Product } from "@src/entities/models/product";
+import { Product, ProductInCart } from "@src/entities/models/product";
 import { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import * as ProductCardActionStyles from "./styles";
 interface ProductCardActionsProps {
-  product: Product;
+  product: Product | ProductInCart;
 }
 
 export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
   const { addProductToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const handleBuyNow = (product: Product) => {
+  const handleBuyNow = (product: Product | ProductInCart) => {
     addProductToCart(product);
     navigate("/checkout");
   };
 
-  const handleaddProductToCart = (product: Product) => addProductToCart(product);
+  const handleaddProductToCart = (product: Product | ProductInCart) =>
+    addProductToCart(product);
 
   return (
     <ProductCardActionStyles.Container

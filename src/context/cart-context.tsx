@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { Product } from "@src/entities/models/product";
+import { Product, ProductInCart } from "@src/entities/models/product";
 import { Cart } from "@src/entities/models/cart";
 import {
   getStorageCart,
@@ -8,7 +8,7 @@ import {
 
 interface ICartContext {
   cart: Cart;
-  addProductToCart: (product: Product) => void;
+  addProductToCart: (product: Product | ProductInCart) => void;
   removeProductFromCartById: (productId: number) => void;
   removeManyProductsFromCartById: (productId: number) => void;
 }
@@ -18,15 +18,33 @@ export const CartContext = createContext<ICartContext>({} as ICartContext);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<Cart>({ products: [], total: 0, amount: 0 });
 
-  const addProductToCart = (product: Product) => {
+  const addProductToCart = (product: Product | ProductInCart) => {
     setCart((prevCart) => {
-      const updatedProducts = [...prevCart.products, product];
+      const existingProductIndex = prevCart.products.findIndex(
+        (p) => p.id === product.id
+      );
+
+      const updatedProducts =
+        existingProductIndex !== -1
+          ? prevCart.products.map((product, index) =>
+              index === existingProductIndex
+                ? { ...product, quantity: product.quantity + 1 }
+                : product
+            )
+          : [...prevCart.products, { ...product, quantity: 1 }];
+
+      const updatedTotal = updatedProducts.reduce(
+        (total, p) => total + p.quantity,
+        0
+      );
+
       const updatedAmount = prevCart.amount + product.price;
-      const updatedTotal = updatedProducts.length;
+
       return {
+        ...prevCart,
         products: updatedProducts,
-        total: updatedTotal,
         amount: updatedAmount,
+        total: updatedTotal,
       };
     });
   };
@@ -54,9 +72,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       const updatedTotal = updatedProducts.length;
 
       return {
+        ...prevCart,
         products: updatedProducts,
-        total: updatedTotal,
         amount: updatedAmount,
+        total: updatedTotal,
       };
     });
   };
@@ -72,16 +91,23 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const updatedProducts = [...prevCart.products];
-      updatedProducts.splice(indexOfItemToRemove, 1);
+      const removedProduct = updatedProducts[indexOfItemToRemove];
 
-      const updatedAmount =
-        prevCart.amount - prevCart.products[indexOfItemToRemove].price;
-      const updatedTotal = updatedProducts.length;
+      if (removedProduct.quantity > 1) {
+        removedProduct.quantity -= 1;
+      }
+
+      const updatedAmount = prevCart.amount - removedProduct.price;
+      const updatedTotal = updatedProducts.reduce(
+        (total, p) => total + p.quantity,
+        0
+      );
 
       return {
+        ...prevCart,
         products: updatedProducts,
-        total: updatedTotal,
         amount: updatedAmount,
+        total: updatedTotal,
       };
     });
   };

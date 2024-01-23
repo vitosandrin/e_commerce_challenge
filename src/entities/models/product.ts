@@ -8,3 +8,4 @@ export interface Product {
 }
 
 export type ProductAPIResponse = Omit<Product, "image"> & { images: string[] };
+export type ProductInCart = Product & { quantity: number };
