@@ -27,7 +27,7 @@ export const QuantitySelector = ({
   };
 
   useEffect(() => {
-    onQuantityChange(quantity);
+    onQuantityChange && onQuantityChange(quantity);
   }, [quantity, onQuantityChange]);
   
   
