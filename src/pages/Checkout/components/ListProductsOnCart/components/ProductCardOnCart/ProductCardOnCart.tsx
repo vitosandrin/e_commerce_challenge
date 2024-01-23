@@ -46,9 +46,18 @@ export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
         onQuantityChange={handleQuantityChange}
       />
 
-      <Text size="sm" color={1} weight={700}>
-        {formatMonetaryEn(product.price)}
-      </Text>
+      <ProductCardOnCartStyles.ContainerPrice
+        align="center"
+        justify="center"
+        direction="column"
+      >
+        <Text size="sm" color={1} weight={700}>
+          {formatMonetaryEn(product.price * product.quantity)}
+        </Text>
+        <Text size="xxxs" color={1}>
+          ({formatMonetaryEn(product.price)} unit)
+        </Text>
+      </ProductCardOnCartStyles.ContainerPrice>
     </ProductCardOnCartStyles.Container>
   );
 };
