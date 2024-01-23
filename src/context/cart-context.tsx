@@ -20,21 +20,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addProductToCart = (product: Product | ProductInCart) => {
     setCart((prevCart) => {
-      const existingProductIndex = prevCart.products.findIndex(
-        (p) => p.id === product.id
+      const existingProduct = prevCart.products.find(
+        (item) => item.id === product.id
       );
 
-      const updatedProducts =
-        existingProductIndex !== -1
-          ? prevCart.products.map((product, index) =>
-              index === existingProductIndex
-                ? { ...product, quantity: product.quantity + 1 }
-                : product
-            )
-          : [...prevCart.products, { ...product, quantity: 1 }];
+      const updatedProducts = existingProduct
+        ? prevCart.products.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        : [...prevCart.products, { ...product, quantity: 1 }];
 
       const updatedTotal = updatedProducts.reduce(
-        (total, p) => total + p.quantity,
+        (total, item) => total + item.quantity,
         0
       );
 
@@ -64,12 +63,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       );
 
       const removedAmount = removedProducts.reduce(
-        (total, product) => total + product.price,
+        (total, product) => total + product.price * product.quantity,
+        0
+      );
+
+      const updatedTotal = updatedProducts.reduce(
+        (total, product) => total + product.quantity,
         0
       );
 
       const updatedAmount = prevCart.amount - removedAmount;
-      const updatedTotal = updatedProducts.length;
 
       return {
         ...prevCart,
@@ -82,24 +85,27 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const removeProductFromCartById = (productId: number) => {
     setCart((prevCart) => {
-      const indexOfItemToRemove = prevCart.products.findIndex(
-        (item) => item.id === productId
+      const existingProduct = prevCart.products.find(
+        (product) => product.id === productId
       );
 
-      if (indexOfItemToRemove === -1) {
+      if (!existingProduct) {
         return prevCart;
       }
 
-      const updatedProducts = [...prevCart.products];
-      const removedProduct = updatedProducts[indexOfItemToRemove];
+      const updatedProducts = prevCart.products.map((product) =>
+        product.id === productId
+          ? {
+              ...product,
+              quantity: product.quantity > 1 ? product.quantity - 1 : 1,
+            }
+          : product
+      );
 
-      if (removedProduct.quantity > 1) {
-        removedProduct.quantity -= 1;
-      }
+      const updatedAmount = prevCart.amount - existingProduct.price;
 
-      const updatedAmount = prevCart.amount - removedProduct.price;
       const updatedTotal = updatedProducts.reduce(
-        (total, p) => total + p.quantity,
+        (total, product) => total + product.quantity,
         0
       );
 
