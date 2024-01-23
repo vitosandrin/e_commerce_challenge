@@ -3,7 +3,7 @@ import * as ProductCardOnCartStyles from "./styles";
 import { FlexBox, Text } from "@src/components";
 import { formatMonetaryEn } from "@src/utils/object/monetary";
 import { useContext, useState } from "react";
-import { QuantitySelector } from "../QuantitySelector/QuantitySelector";
+import { QuantitySelector } from "../QuantitySelector";
 import { CartContext } from "@src/context/cart-context";
 
 interface ProductCardOnCartProps {

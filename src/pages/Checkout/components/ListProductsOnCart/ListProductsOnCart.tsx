@@ -11,9 +11,8 @@ export const ListProductsOnCart = () => {
     removeManyProductsFromCartById,
   } = useContext(CartContext);
 
-  const handleRemoveProductFromCartById = (productId: number) => {
+  const handleRemoveProductFromCartById = (productId: number) =>
     removeManyProductsFromCartById(productId);
-  };
 
   return (
     <ListProductsOnCartStyles.Container
