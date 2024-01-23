@@ -55,7 +55,7 @@ export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
           {formatMonetaryEn(product.price * product.quantity)}
         </Text>
         <Text size="xxxs" color={1}>
-          ({formatMonetaryEn(product.price)} unit)
+          ({formatMonetaryEn(product.price)} x {product.quantity})
         </Text>
       </ProductCardOnCartStyles.ContainerPrice>
     </ProductCardOnCartStyles.Container>
