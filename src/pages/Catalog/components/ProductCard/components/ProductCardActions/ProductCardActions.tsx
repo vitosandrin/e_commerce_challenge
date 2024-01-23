@@ -18,7 +18,7 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
     navigate("/checkout");
   };
 
-  const handleaddProductToCart = (product: Product | ProductInCart) =>
+  const handleAddProductToCart = (product: Product | ProductInCart) =>
     addProductToCart(product);
 
   return (
@@ -29,7 +29,7 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
       gap="xxs"
     >
       <Button
-        onClick={() => handleaddProductToCart(product)}
+        onClick={() => handleAddProductToCart(product)}
         colorType="Success"
         height="md"
       >
