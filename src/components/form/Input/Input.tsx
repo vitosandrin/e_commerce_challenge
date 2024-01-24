@@ -1,6 +1,6 @@
 import * as InputStyles from "./styles";
 
-export interface IInputProps {
+export interface InputProps {
   type: string;
   name: string;
   placeholder?: string;
@@ -19,8 +19,8 @@ export const Input = ({
   value,
   height,
   width,
-  disabled,
-}: IInputProps) => {
+  disabled
+}: InputProps) => {
   return (
     <InputStyles.Input
       type={type}

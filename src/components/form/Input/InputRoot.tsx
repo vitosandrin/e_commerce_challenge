@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import * as InputStyles from "./styles";
 
-export interface IInputRootProps {
+export interface InputRootProps {
   borderRadius?: string;
   children: ReactNode;
 }
 
-export const InputRoot = ({ borderRadius, children }: IInputRootProps) => {
+export const InputRoot = ({ borderRadius, children }: InputRootProps) => {
   return (
     <InputStyles.Container
       borderRadius={borderRadius}

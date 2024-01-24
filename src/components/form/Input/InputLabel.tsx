@@ -1,16 +1,16 @@
+import { FontSize } from "@src/components/types";
 import * as InputStyles from "./styles";
 
-export interface IInputLabelProps {
-  type: string;
+export interface InputLabelProps {
   text: string;
-  color?: string;
-  fontSize?: string;
+  color?: 1 | 2 | 3;
+  size?: FontSize;
 }
 
-export const InputLabel = ({ text, color, fontSize }: IInputLabelProps) => {
+export const InputLabel = ({ text, color, size }: InputLabelProps) => {
   return (
-    <InputStyles.Label fontSize={fontSize} color={color}>
+    <InputStyles.Label size={size} color={color}>
       {text}
     </InputStyles.Label>
   );
-}
+};
