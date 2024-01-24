@@ -48,8 +48,10 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
   const handleAddProductToCart = (product: Product | ProductInCart) =>
     addProductToCart(product);
 
-  const handleRemoveFromCart = (productId: number) =>
+  const handleRemoveFromCart = (productId: number) => {
     removeManyProductsFromCartById(productId);
+    setQuantity(1);
+  };
 
   return (
     <ProductCardActionStyles.Container
