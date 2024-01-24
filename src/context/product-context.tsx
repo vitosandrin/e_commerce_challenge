@@ -2,10 +2,17 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import { Product, ProductAPIResponse } from "@src/entities/models/product";
 import { api } from "@src/config/client/api";
 
+interface PriceRange {
+  min: number;
+  max: number;
+}
+
 interface IProductContext {
   products: Product[];
   selectedProduct: Product | null;
   filterByTitle: string;
+  filterByPriceRange: PriceRange;
+  setFilterByPriceRange: (filter: PriceRange) => void;
   setFilterByTitle: (filter: string) => void;
   fetchProducts: () => Promise<void>;
   selectProduct: (productId: number) => void;
@@ -20,6 +27,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [filterByTitle, setFilterByTitle] = useState<string>("");
+  const [filterByPriceRange, setFilterByPriceRange] = useState<PriceRange>({
+    min: 0,
+    max: 100,
+  });
 
   const fetchProducts = async () => {
     const { data: response } = await api.get(
@@ -44,6 +55,13 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const filterProductsByPriceRange = (products: Product[]): Product[] => {
+    return products.filter((product: Product) => {
+      const { min, max } = filterByPriceRange;
+      return product.price >= min && product.price <= max;
+    });
+  };
+
   const selectProduct = (productId: number) => {
     const product = products.find((product) => product.id === productId);
     if (!product) return;
@@ -51,20 +69,25 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (filterByTitle) {
-      const filteredProducts = filterProductsByTitle(products);
-      setProducts(filteredProducts);
-    } else {
-      setProducts(allProducts);
-    }
-  }, [filterByTitle]);
+    const filteredByTitle = filterProductsByTitle(allProducts);
 
+    let filteredProducts = filteredByTitle;
+
+    if (filterByPriceRange.min !== 0 || filterByPriceRange.max !== 1000) {
+      filteredProducts = filterProductsByPriceRange(filteredByTitle);
+    }
+
+    setProducts(filteredProducts);
+  }, [filterByTitle, filterByPriceRange, allProducts]);
+  
   return (
     <ProductContext.Provider
       value={{
         products,
         selectedProduct,
         filterByTitle,
+        filterByPriceRange,
+        setFilterByPriceRange,
         setFilterByTitle,
         fetchProducts,
         selectProduct,
