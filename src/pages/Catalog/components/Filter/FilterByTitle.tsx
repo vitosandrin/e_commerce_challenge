@@ -6,8 +6,7 @@ export const FilterByTitle = () => {
   const { setFilterByTitle, filterByTitle } = useContext(ProductContext);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    setFilterByTitle(inputValue);
+    setFilterByTitle(event.target.value);
   };
 
   return (
