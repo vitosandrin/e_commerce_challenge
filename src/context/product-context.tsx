@@ -17,10 +17,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const fetchProducts = async () => {
-    const { data: response } = await api.get("/categories/2/products?offset=0&limit=10");
+    const { data: response } = await api.get("/categories/4/products?offset=0&limit=10");
     const productsMapped = response.map((product: ProductAPIResponse) => ({
       ...product,
-      image: product.images[1],
+      image: product.images[0],
     }));
 
     setProducts(productsMapped);
