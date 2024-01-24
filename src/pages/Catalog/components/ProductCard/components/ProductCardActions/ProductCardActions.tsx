@@ -17,10 +17,10 @@ export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
     removeProductFromCartById,
     cart: { products },
   } = useContext(CartContext);
-  
+
   const productInCart = products.find((item) => item.id === product.id);
   const [quantity, setQuantity] = useState<number>(
-    productInCart ? productInCart.quantity : 0
+    productInCart ? productInCart.quantity : 1
   );
 
   const navigate = useNavigate();
