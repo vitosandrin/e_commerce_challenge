@@ -5,8 +5,8 @@ import { api } from "@src/config/client/api";
 interface IProductContext {
   products: Product[];
   selectedProduct: Product | null;
-  filter: string;
-  setFilter: (filter: string) => void;
+  filterByTitle: string;
+  setFilterByTitle: (filter: string) => void;
   fetchProducts: () => Promise<void>;
   selectProduct: (productId: number) => void;
 }
@@ -19,7 +19,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [filter, setFilter] = useState<string>("");
+  const [filterByTitle, setFilterByTitle] = useState<string>("");
 
   const fetchProducts = async () => {
     const { data: response } = await api.get(
@@ -40,7 +40,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
   const filterProductsByTitle = (products: Product[]): Product[] => {
     return products.filter((product: Product) =>
-      product.title.toLowerCase().includes(filter.toLowerCase())
+      product.title.toLowerCase().includes(filterByTitle.toLowerCase())
     );
   };
 
@@ -51,21 +51,21 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (filter) {
+    if (filterByTitle) {
       const filteredProducts = filterProductsByTitle(products);
       setProducts(filteredProducts);
     } else {
       setProducts(allProducts);
     }
-  }, [filter]);
+  }, [filterByTitle]);
 
   return (
     <ProductContext.Provider
       value={{
         products,
         selectedProduct,
-        filter,
-        setFilter,
+        filterByTitle,
+        setFilterByTitle,
         fetchProducts,
         selectProduct,
       }}
