@@ -7,30 +7,33 @@ import { useNavigate } from "react-router-dom";
 import * as ProductCardActionStyles from "./styles";
 import { FaRegTrashCan } from "react-icons/fa6";
 interface ProductCardActionsProps {
-  product: Product | ProductInCart;
+  product: Product;
 }
 
 export const ProductCardActions = ({ product }: ProductCardActionsProps) => {
-  //TODO BUG
-  const [quantity, setQuantity] = useState<number>(
-    (product as ProductInCart).quantity
-  );
   const {
     addProductToCart,
     removeManyProductsFromCartById,
     removeProductFromCartById,
     cart: { products },
   } = useContext(CartContext);
+  
+  const productInCart = products.find((item) => item.id === product.id);
+  const [quantity, setQuantity] = useState<number>(
+    productInCart ? productInCart.quantity : 0
+  );
+
   const navigate = useNavigate();
 
   const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity);
-
-    if (newQuantity > quantity) {
-      addProductToCart(product);
-    } else if (newQuantity < quantity) {
-      removeProductFromCartById(product.id);
-    }
+    setQuantity((prevQuantity) => {
+      if (newQuantity > prevQuantity) {
+        addProductToCart(product);
+      } else if (newQuantity < prevQuantity) {
+        removeProductFromCartById(product.id);
+      }
+      return newQuantity;
+    });
   };
 
   const handleBuyNow = (product: Product | ProductInCart) => {
