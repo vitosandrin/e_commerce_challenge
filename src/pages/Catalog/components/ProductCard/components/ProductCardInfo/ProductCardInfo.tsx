@@ -3,8 +3,6 @@ import { Product } from "@src/entities/models/product";
 import { formatMonetaryEn } from "@src/utils/object/monetary";
 import * as ProductCardStyles from "../../styles";
 import * as ProductCardInfoStyles from "./styles";
-
-import { format } from "date-fns";
 interface ProductCardInfoProps {
   product: Product;
 }
@@ -19,10 +17,9 @@ export const ProductCardInfo = ({ product }: ProductCardInfoProps) => {
     >
       <ProductCardStyles.ImageCard src={product.image} />
 
-      <Text size="xxxs">{`Available since: ${format(
-        product.creationAt,
-        "dd/MM/yy"
-      )}`}</Text>
+      <Text size="xxxs">{`Available since: ${
+        product.creationAt.split("T")[0]
+      }`}</Text>
 
       <Text size="xs" weight={500}>
         {product.title}
