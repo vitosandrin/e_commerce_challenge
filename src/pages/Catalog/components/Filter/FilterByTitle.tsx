@@ -16,8 +16,8 @@ export const FilterByTitle = () => {
         type="text"
         name="title"
         placeholder="title here"
-        width="100%"
-        height="35px"
+        width="200px"
+        height="25px"
         handleOnChange={handleInputChange}
         value={filterByTitle}
       />

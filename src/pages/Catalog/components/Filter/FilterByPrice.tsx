@@ -23,6 +23,10 @@ export const FilterByPrice = () => {
       justify="center"
       direction="column"
     >
+      <Text size="sm" color={1} weight={700}>
+        {formatMonetaryEn(filterByPriceRange.min)} -{" "}
+        {formatMonetaryEn(filterByPriceRange.max)}
+      </Text>
       <FilterStyles.RangePriceStyled
         min={0}
         max={100}
@@ -31,10 +35,6 @@ export const FilterByPrice = () => {
         defaultValue={[filterByPriceRange.min, filterByPriceRange.max]}
         onChange={handleSliderChange}
       />
-      <Text size="sm" color={1} weight={700}>
-        {formatMonetaryEn(filterByPriceRange.min)} -{" "}
-        {formatMonetaryEn(filterByPriceRange.max)}
-      </Text>
     </FilterStyles.ContainerFilterByPrice>
   );
 };

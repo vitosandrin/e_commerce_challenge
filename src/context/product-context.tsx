@@ -12,8 +12,10 @@ interface IProductContext {
   selectedProduct: Product | null;
   filterByTitle: string;
   filterByPriceRange: PriceRange;
+  filterByDate: Date | null;
   setFilterByPriceRange: (filter: PriceRange) => void;
   setFilterByTitle: (filter: string) => void;
+  setFilterByDate: (date: Date | null) => void;
   fetchProducts: () => Promise<void>;
   selectProduct: (productId: number) => void;
 }
@@ -31,6 +33,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     min: 0,
     max: 100,
   });
+  const [filterByDate, setFilterByDate] = useState<Date | null>(null);
 
   const fetchProducts = async () => {
     const { data: response } = await api.get(
@@ -62,6 +65,21 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const filterProductsByDate = (products: Product[]): Product[] => {
+    if (!filterByDate) {
+      return products;
+    }
+
+    return products.filter((product: Product) => {
+      const productDate = new Date(product.creationAt);
+
+      return (
+        productDate.getTime() >= filterByDate.setHours(0, 0, 0, 0) &&
+        productDate.getTime() <= filterByDate.setHours(23, 59, 59, 999)
+      );
+    });
+  };
+
   const selectProduct = (productId: number) => {
     const product = products.find((product) => product.id === productId);
     if (!product) return;
@@ -70,16 +88,17 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const filteredByTitle = filterProductsByTitle(allProducts);
-
     let filteredProducts = filteredByTitle;
 
     if (filterByPriceRange.min !== 0 || filterByPriceRange.max !== 1000) {
       filteredProducts = filterProductsByPriceRange(filteredByTitle);
     }
 
+    filteredProducts = filterProductsByDate(filteredProducts);
+
     setProducts(filteredProducts);
-  }, [filterByTitle, filterByPriceRange, allProducts]);
-  
+  }, [filterByTitle, filterByPriceRange, filterByDate, allProducts]);
+
   return (
     <ProductContext.Provider
       value={{
@@ -87,8 +106,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         selectedProduct,
         filterByTitle,
         filterByPriceRange,
+        filterByDate,
         setFilterByPriceRange,
         setFilterByTitle,
+        setFilterByDate,
         fetchProducts,
         selectProduct,
       }}
