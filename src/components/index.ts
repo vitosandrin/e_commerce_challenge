@@ -6,6 +6,7 @@ import { Header } from "./layout/Header/Header";
 import { QuantitySelector } from "./utils/generic/QuantitySelector";
 import { Input } from "./form/Input";
 import { Select } from "./form/Select";
+import { ToastMessage } from "./layout/ToastMessage/ToastMessage";
 export {
   FlexBox,
   Container,
@@ -15,4 +16,5 @@ export {
   QuantitySelector,
   Input,
   Select,
+  ToastMessage,
 };
