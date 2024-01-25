@@ -50,6 +50,7 @@ export const theme = {
     md: "768px",
     lg: "992px",
     xl: "1366px",
+    xxl: "1440px",
   },
   transitions: {
     time: "0.3s",

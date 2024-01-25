@@ -46,6 +46,7 @@ declare module "styled-components" {
       md: string;
       lg: string;
       xl: string;
+      xxl: string;
     };
     transitions: {
       time: string;
