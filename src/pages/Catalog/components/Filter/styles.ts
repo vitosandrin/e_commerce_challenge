@@ -9,22 +9,20 @@ export const Container = styled(FlexBox)`
   margin: 0 0 0 1rem;
   border-radius: 10px;
   padding: 1rem;
-  max-width: 20vw;
+  width: 33vw;
+  max-width: 250px;
   background-color: ${({ theme }) => theme.colors.types.black};
 `;
 
-export const ContainerFilterByPrice = styled(FlexBox)`
-  width: 95%;
-`;
+export const ContainerFilterByPrice = styled(FlexBox)``;
 
-export const RangePriceStyled = styled(Slider)`
-  width: 100%;
-`;
+export const RangePriceStyled = styled(Slider)``;
 
-export const ContainerFilterByDate = styled(FlexBox)`
-  width: 100%;
-`;
+export const ContainerFilterByDate = styled(FlexBox)``;
+
 export const InputDateStyled = styled(ReactDatePicker)`
   height: 25px;
-  width: 100%;
+  outline: none;
 `;
+
+export const ContainerOrderByPrice = styled(FlexBox)``;
