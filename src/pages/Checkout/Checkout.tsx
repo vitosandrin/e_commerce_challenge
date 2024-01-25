@@ -7,7 +7,6 @@ export const Checkout = () => {
       align="flex-start"
       justify="space-between"
       direction="row"
-      gap="xxs"
     >
       <ListProductsOnCart />
       <InfoCart />
