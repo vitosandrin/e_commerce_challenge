@@ -28,10 +28,6 @@ export const Select = styled.select<SelectProps>`
   font-size: ${({ theme }) => theme.font.sizes.xs};
   color: ${({ theme }) => theme.font.colors[3]};
 
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.primary[2]};
-  }
-
   &:disabled {
     cursor: not-allowed;
     color: ${({ theme }) => theme.font.colors[1]};
