@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# 💻 Fake Store
+A basic e-commerce made in React Typescript.
+This e-commerce allows you to:
+- Get access to a catalog of products from a specific category.
+- Filter this catalog by title, price and inclusion date.
+- Sort products by price.
+- Shopping cart management such as: increment, decrement and delete.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🤹‍♀️ How to run?
+1 - Open the terminal in the location you want to clone the repository and run the command `git clone https://github.com/vitosandrin/fake-store.git` 
 
-Currently, two official plugins are available:
+2 - Open a terminal in the 'server' directory and run the command `npm run build:start` or `yarn build:start`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3 - Open the link http://localhost:4173/ in your browser and is done!
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## ✨ Techs
+  * Front-end:
+    -  [ ] React
+    -  [ ] Typescript
+    -  [ ] Vite
+    -  [ ] Axios
+    -  [ ] Styled Components
+    -  [ ] ContextApi
+    -  [ ] React Router DOM
+    -  [ ] Polished 
+    -  [ ] React-icons
+    -  [ ] Rc-slider
+<hr /> 
