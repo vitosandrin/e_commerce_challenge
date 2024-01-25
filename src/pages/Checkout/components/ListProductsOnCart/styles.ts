@@ -4,6 +4,9 @@ import { shade as shadify } from "polished";
 
 export const Container = styled(FlexBox)`
   width: 50%;
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 90%;
+  }
 `;
 
 export const RemoveButton = styled.button`

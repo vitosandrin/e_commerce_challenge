@@ -22,7 +22,7 @@ export const FilterByPrice = () => {
       justify="center"
       direction="column"
     >
-      <Text size="sm" color={1} weight={700}>
+      <Text size="sm" color={1} weight={500}>
         {formatMonetaryEn(filterByPriceRange.min)} -{" "}
         {formatMonetaryEn(filterByPriceRange.max)}
       </Text>

@@ -10,7 +10,7 @@ export const ResetCss = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background};
     padding: 0;
     margin: 0;
-    @media (max-width: ${({ theme }) => theme.breakpoints.xsm}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
       font-size: 80%;
     }
     overflow-x: hidden;
