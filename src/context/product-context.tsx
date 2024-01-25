@@ -13,9 +13,11 @@ interface IProductContext {
   filterByTitle: string;
   filterByPriceRange: PriceRange;
   filterByDate: Date | null;
+  orderPrice: "asc" | "desc";
   setFilterByPriceRange: (filter: PriceRange) => void;
   setFilterByTitle: (filter: string) => void;
   setFilterByDate: (date: Date | null) => void;
+  setOrderPrice: (order: "asc" | "desc") => void;
   fetchProducts: () => Promise<void>;
   selectProduct: (productId: number) => void;
 }
@@ -34,6 +36,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     max: 100,
   });
   const [filterByDate, setFilterByDate] = useState<Date | null>(null);
+  const [orderPrice, setOrderPrice] = useState<"asc" | "desc">("asc");
 
   const fetchProducts = async () => {
     const { data: response } = await api.get(
@@ -80,6 +83,12 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const sortProductsByPrice = (products: Product[]): Product[] => {
+    return products.slice().sort((a, b) => {
+      return orderPrice === "asc" ? a.price - b.price : b.price - a.price;
+    });
+  };
+
   const selectProduct = (productId: number) => {
     const product = products.find((product) => product.id === productId);
     if (!product) return;
@@ -95,9 +104,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     }
 
     filteredProducts = filterProductsByDate(filteredProducts);
+    filteredProducts = sortProductsByPrice(filteredProducts);
 
     setProducts(filteredProducts);
-  }, [filterByTitle, filterByPriceRange, filterByDate, allProducts]);
+  }, [filterByTitle, filterByPriceRange, filterByDate, orderPrice, allProducts]);
 
   return (
     <ProductContext.Provider
@@ -107,9 +117,11 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         filterByTitle,
         filterByPriceRange,
         filterByDate,
+        orderPrice,
         setFilterByPriceRange,
         setFilterByTitle,
         setFilterByDate,
+        setOrderPrice,
         fetchProducts,
         selectProduct,
       }}
