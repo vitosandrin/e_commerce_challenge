@@ -1,4 +1,3 @@
-import "rc-slider/assets/index.css";
 import { ProductContext } from "@src/context/product-context";
 import { useContext } from "react";
 import * as FilterStyles from "./styles";
@@ -19,7 +18,7 @@ export const FilterByPrice = () => {
 
   return (
     <FilterStyles.ContainerFilterByPrice
-      align="center"
+      align="flex-start"
       justify="center"
       direction="column"
     >

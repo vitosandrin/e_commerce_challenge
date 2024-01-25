@@ -1,4 +1,3 @@
-import { FlexBox } from "@src/components";
 import { FilterByDate } from "./FilterByDate";
 import { FilterByPrice } from "./FilterByPrice";
 import { FilterByTitle } from "./FilterByTitle";
@@ -12,11 +11,8 @@ export const Filter = () => {
       gap="xs"
     >
       <FilterByTitle />
-
-      <FlexBox align="center" justify="space-around" direction="row" gap="xs">
-        <FilterByPrice />
-        <FilterByDate />
-      </FlexBox>
+      <FilterByPrice />
+      <FilterByDate />
     </FilterStyles.Container>
   );
 };

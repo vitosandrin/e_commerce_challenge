@@ -23,7 +23,6 @@ export const Container = styled(FlexBox)<InputContainerProps>`
 `;
 
 export const Input = styled.input`
-  border-radius: 0.3rem;
   height: ${(props) => props.height || "30px"};
   width: ${(props) => props.width || "200px"};
   padding: 0.4rem;
@@ -32,6 +31,8 @@ export const Input = styled.input`
 
   transition: border-color 0.3s ease;
   position: relative;
+
+  border-style: none;
 
   &:focus {
     border-color: ${({ theme }) => theme.font.colors[3]};

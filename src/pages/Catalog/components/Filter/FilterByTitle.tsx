@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext } from "react";
-import Input from "@src/components/form/Input";
 import { ProductContext } from "@src/context/product-context";
+import { Input } from "@src/components";
 
 export const FilterByTitle = () => {
   const { setFilterByTitle, filterByTitle } = useContext(ProductContext);
@@ -11,11 +11,12 @@ export const FilterByTitle = () => {
 
   return (
     <Input.Root>
+      <Input.Label text="Search:" size="md"/>
       <Input.Input
         type="text"
         name="title"
         placeholder="title here"
-        width="200px"
+        width="100%"
         height="25px"
         handleOnChange={handleInputChange}
         value={filterByTitle}

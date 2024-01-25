@@ -1,18 +1,26 @@
 import { ProductContext } from "@src/context/product-context";
 import { useContext } from "react";
-import ReactDatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
+import * as FilterStyles from "./styles";
+import { Input } from "@src/components";
 export const FilterByDate = () => {
   const { filterByDate, setFilterByDate } = useContext(ProductContext);
 
   const handleDateChange = (date: Date) => setFilterByDate(date);
 
   return (
-    <ReactDatePicker
-      selected={filterByDate}
-      onChange={handleDateChange}
-      dateFormat="yyyy-MM-dd"
-    />
+    <FilterStyles.ContainerFilterByDate
+      align="center"
+      justify="center"
+      direction="column"
+    >
+      <Input.Root>
+        <Input.Label text="Date:" size="md" />
+        <FilterStyles.InputDateStyled
+          selected={filterByDate}
+          onChange={handleDateChange}
+          dateFormat="yyyy-MM-dd"
+        />
+      </Input.Root>
+    </FilterStyles.ContainerFilterByDate>
   );
 };
