@@ -2,7 +2,7 @@ import { CartContext } from "@src/context/cart-context";
 import * as ListProductsOnCartStyles from "./styles";
 import { useContext } from "react";
 import { ProductCardOnCart } from "./components/ProductCardOnCart/ProductCardOnCart";
-import { FlexBox, Text } from "@src/components";
+import { FlexBox } from "@src/components";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 export const ListProductsOnCart = () => {
