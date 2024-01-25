@@ -11,6 +11,7 @@ interface ICartContext {
   addProductToCart: (product: Product | ProductInCart) => void;
   removeProductFromCartById: (productId: number) => void;
   removeManyProductsFromCartById: (productId: number) => void;
+  finalizePurchase: () => void;
 }
 
 export const CartContext = createContext<ICartContext>({} as ICartContext);
@@ -118,6 +119,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const finalizePurchase = () => {
+    setCart({ products: [], amount: 0, total: 0 });
+  };
+
   useEffect(() => {
     setStorageCart(cart);
   }, [cart]);
@@ -136,6 +141,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         addProductToCart,
         removeProductFromCartById,
         removeManyProductsFromCartById,
+        finalizePurchase,
       }}
     >
       {children}
