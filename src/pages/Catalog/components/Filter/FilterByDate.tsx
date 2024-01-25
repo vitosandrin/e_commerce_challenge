@@ -19,6 +19,7 @@ export const FilterByDate = () => {
           selected={filterByDate}
           onChange={handleDateChange}
           dateFormat="yyyy-MM-dd"
+          withPortal
         />
       </Input.Root>
     </FilterStyles.ContainerFilterByDate>
