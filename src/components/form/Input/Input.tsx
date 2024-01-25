@@ -19,7 +19,7 @@ export const Input = ({
   value,
   height,
   width,
-  disabled
+  disabled,
 }: InputProps) => {
   return (
     <InputStyles.Input
