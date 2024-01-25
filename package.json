@@ -11,7 +11,6 @@
     "build:start": "npm run build && npm run preview"
   },
   "dependencies": {
-    "axios": "^1.6.5",
     "polished": "^4.2.2",
     "rc-slider": "^10.5.0",
     "react": "^18.2.0",
@@ -22,7 +21,6 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
     "@types/node": "^20.11.5",
     "@types/rc-slider": "^9.3.1",
     "@types/react": "^18.2.43",

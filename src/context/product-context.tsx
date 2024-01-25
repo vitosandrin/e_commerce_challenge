@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { Product, ProductAPIResponse } from "@src/entities/models/product";
-import { api } from "@src/config/client/api";
+import productsFixture from "@src/assets/fixtures/products.json";
 
 interface PriceRange {
   min: number;
@@ -39,10 +39,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [orderPrice, setOrderPrice] = useState<"asc" | "desc">("asc");
 
   const fetchProducts = async () => {
-    const { data: response } = await api.get(
-      "/categories/4/products?offset=0&limit=10"
-    );
-    const productsMapped = mapProducts(response);
+    const productsMapped = mapProducts(productsFixture);
 
     setProducts(productsMapped);
     setAllProducts(productsMapped);
@@ -107,7 +104,13 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     filteredProducts = sortProductsByPrice(filteredProducts);
 
     setProducts(filteredProducts);
-  }, [filterByTitle, filterByPriceRange, filterByDate, orderPrice, allProducts]);
+  }, [
+    filterByTitle,
+    filterByPriceRange,
+    filterByDate,
+    orderPrice,
+    allProducts,
+  ]);
 
   return (
     <ProductContext.Provider
