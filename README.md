@@ -9,16 +9,17 @@ This e-commerce allows you to:
 # 🤹‍♀️ How to run?
 1 - Open the terminal in the location you want to clone the repository and run the command `git clone https://github.com/vitosandrin/fake-store.git` 
 
-2 - Open a terminal in the 'server' directory and run the command `npm run build:start` or `yarn build:start`
+2 - Open a terminal in the root directory and run the command `npm install` or `yarn`
 
-3 - Open the link http://localhost:4173/ in your browser and is done!
+3 - Open a terminal in the root directory and run the command `npm run build:start` or `yarn build:start`
+
+4 - Open the link http://localhost:4173/ in your browser and is done!
 
 ## ✨ Techs
   * Front-end:
     -  [ ] React
     -  [ ] Typescript
     -  [ ] Vite
-    -  [ ] Axios
     -  [ ] Styled Components
     -  [ ] ContextApi
     -  [ ] React Router DOM
