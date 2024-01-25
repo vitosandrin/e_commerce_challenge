@@ -21,7 +21,7 @@ export const ListProductsOnCart = () => {
       direction="column"
       gap="xxs"
     >
-      {products.length > 0 ? (
+      {products.length > 0 &&
         products.map((product) => (
           <FlexBox
             align="center"
@@ -37,10 +37,7 @@ export const ListProductsOnCart = () => {
               <FaRegTrashCan size={30} />
             </ListProductsOnCartStyles.RemoveButton>
           </FlexBox>
-        ))
-      ) : (
-        <Text size="sm">You don't have items in your cart!</Text>
-      )}
+        ))}
     </ListProductsOnCartStyles.Container>
   );
 };

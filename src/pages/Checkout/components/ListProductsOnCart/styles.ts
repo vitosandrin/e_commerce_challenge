@@ -2,7 +2,9 @@ import { FlexBox } from "@src/components";
 import styled from "styled-components";
 import { shade as shadify } from "polished";
 
-export const Container = styled(FlexBox)``;
+export const Container = styled(FlexBox)`
+  width: 50%;
+`;
 
 export const RemoveButton = styled.button`
   display: flex;

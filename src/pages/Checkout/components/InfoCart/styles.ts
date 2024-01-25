@@ -7,4 +7,7 @@ export const Container = styled(FlexBox)`
   max-width: 300px;
   padding: 1rem;
   border-radius: 10px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    margin: 0;
+  }
 `;

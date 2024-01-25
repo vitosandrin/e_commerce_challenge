@@ -5,8 +5,9 @@ export const Checkout = () => {
   return (
     <CheckoutStyles.Container
       align="flex-start"
-      justify="space-between"
+      justify="center"
       direction="row"
+      gap="xxs"
     >
       <ListProductsOnCart />
       <InfoCart />
