@@ -2,9 +2,7 @@ import { FlexBox } from "@src/components";
 import styled from "styled-components";
 import { shade as shadify } from "polished";
 
-export const Container = styled(FlexBox)`
-  max-width: 50%;
-`;
+export const Container = styled(FlexBox)``;
 
 export const RemoveButton = styled.button`
   display: flex;
@@ -25,7 +23,6 @@ export const RemoveButton = styled.button`
     background-color: ${({ theme: { colors } }) =>
       shadify(0.2, colors.feedback.error)};
   }
-
 
   &:disabled {
     opacity: 0.65;

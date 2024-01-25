@@ -36,7 +36,7 @@ export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
           src={product.image}
           alt={product.title}
         />
-        <Text size="xxxs" color={1}>
+        <Text size="xxs" color={1}>
           {product.title}
         </Text>
       </FlexBox>
@@ -48,7 +48,7 @@ export const ProductCardOnCart = ({ product }: ProductCardOnCartProps) => {
 
       <ProductCardOnCartStyles.ContainerPrice
         align="center"
-        justify="center"
+        justify="flex-end"
         direction="column"
       >
         <Text size="sm" color={1} weight={700}>
