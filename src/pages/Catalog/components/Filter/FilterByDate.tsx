@@ -13,15 +13,13 @@ export const FilterByDate = () => {
       justify="center"
       direction="column"
     >
-      <Input.Root>
-        <Input.Label text="Date:" size="md" />
-        <FilterStyles.InputDateStyled
-          selected={filterByDate}
-          onChange={handleDateChange}
-          dateFormat="yyyy-MM-dd"
-          withPortal
-        />
-      </Input.Root>
+      <Input.Label text="Date:" size="md" />
+      <FilterStyles.InputDateStyled
+        selected={filterByDate}
+        onChange={handleDateChange}
+        dateFormat="yyyy-MM-dd"
+        withPortal
+      />
     </FilterStyles.ContainerFilterByDate>
   );
 };
