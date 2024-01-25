@@ -18,8 +18,8 @@ export const Label = styled.label<LabelProps>`
 `;
 
 export const Container = styled(FlexBox)<InputContainerProps>`
+  width: 100%;
   border-radius: ${(props) => props.borderRadius || "0.5rem"};
-  width: fit-content;
 `;
 
 export const Input = styled.input`
